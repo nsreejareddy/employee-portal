@@ -25,9 +25,12 @@ public class EmployeeWebSecurityConfigurerAdapter extends WebSecurityConfigurerA
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable().authorizeRequests()
-      .anyRequest().authenticated()
-      .and().httpBasic()
+    http.csrf().disable()
+      .authorizeRequests()
+      .antMatchers("/employee/**")
+      .authenticated()
+      .and()
+      .httpBasic()
       .authenticationEntryPoint(authEntryPoint);
   }
 
